@@ -1,15 +1,10 @@
-Main page
-=========
-
-Introduction
-------------
-
-Just a quick introduction, and a little text.
+Documentation
+=============
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   intro
    modules
 
 Indices and tables
