@@ -1,6 +1,11 @@
 Welcome to testproj's documentation!
 ====================================
 
+Introduction
+------------
+
+Just a quick intro.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
