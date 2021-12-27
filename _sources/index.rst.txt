@@ -1,10 +1,10 @@
-Welcome to testproj's documentation!
-====================================
+Main page
+=========
 
 Introduction
 ------------
 
-Just a quick intro.
+Just a quick intro
 
 .. toctree::
    :maxdepth: 2
