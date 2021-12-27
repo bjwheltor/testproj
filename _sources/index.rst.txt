@@ -10,7 +10,7 @@ Just a quick introduction, and a little text.
    :maxdepth: 2
    :caption: Contents:
 
-
+   modules
 
 Indices and tables
 ==================
