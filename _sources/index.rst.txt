@@ -4,7 +4,7 @@ Main page
 Introduction
 ------------
 
-Just a quick introduction.
+Just a quick introduction, and a little text.
 
 .. toctree::
    :maxdepth: 2
