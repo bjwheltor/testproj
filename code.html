@@ -37,7 +37,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Code</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-position">position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tiles">tiles</a></li>
 </ul>
 </li>
 </ul>
@@ -68,41 +68,160 @@
              
   <section id="code">
 <h1>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h1>
-<section id="module-position">
-<span id="position"></span><h2>position<a class="headerlink" href="#module-position" title="Permalink to this headline">¶</a></h2>
-<p>Position</p>
+<section id="module-tiles">
+<span id="tiles"></span><h2>tiles<a class="headerlink" href="#module-tiles" title="Permalink to this headline">¶</a></h2>
+<p>Tiles
+History</p>
 <dl class="simple">
-<dt>History</dt><dd><p>24-Jul-2021 - Initial version separated from board.py</p>
+<dt>17-Jul-2021 - Initial version-controlled code for tile generation and management.</dt><dd><p>Note: walls now changes to access with opposite truth values.</p>
 </dd>
 </dl>
 <dl class="py class">
-<dt id="position.Dimensions">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">position.</span></code><code class="sig-name descname"><span class="pre">Dimensions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Dimensions" title="Permalink to this definition">¶</a></dt>
+<dt id="tiles.Tile">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">tiles.</span></code><code class="sig-name descname"><span class="pre">Tile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tiles.Tile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Represents the dimensions as a set of coordinates</p>
+<p>Represents a tile in the Shifting Maze game, including image of tile.</p>
+<dl class="py attribute">
+<dt id="tiles.Tile.number">
+<code class="sig-name descname"><span class="pre">number</span></code><a class="headerlink" href="#tiles.Tile.number" title="Permalink to this definition">¶</a></dt>
+<dd><p>int
+Unique number assigned to tile</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.doors">
+<code class="sig-name descname"><span class="pre">doors</span></code><a class="headerlink" href="#tiles.Tile.doors" title="Permalink to this definition">¶</a></dt>
+<dd><p>list
+List of values representing no door or blank wall (0) or a door (1).
+These proceed anti-clockwise from up the screen. Default: [1,1,1,1]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.size">
+<code class="sig-name descname"><span class="pre">size</span></code><a class="headerlink" href="#tiles.Tile.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>integer
+Length of one edge of a square tile, including frame. Default: 102</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.frame">
+<code class="sig-name descname"><span class="pre">frame</span></code><a class="headerlink" href="#tiles.Tile.frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>int
+Width of frame around edge of tile. Default: 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.wall_width">
+<code class="sig-name descname"><span class="pre">wall_width</span></code><a class="headerlink" href="#tiles.Tile.wall_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>int
+Thickness of walls. Default: 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.door_width">
+<code class="sig-name descname"><span class="pre">door_width</span></code><a class="headerlink" href="#tiles.Tile.door_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>int
+Width of doorways. Default: 50</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.image">
+<code class="sig-name descname"><span class="pre">image</span></code><a class="headerlink" href="#tiles.Tile.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>pygame.Surface
+Image of tile</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.rect">
+<code class="sig-name descname"><span class="pre">rect</span></code><a class="headerlink" href="#tiles.Tile.rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>pygame.Surface.rect
+Rectangle describing tile image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.frame_colour">
+<code class="sig-name descname"><span class="pre">frame_colour</span></code><a class="headerlink" href="#tiles.Tile.frame_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>tuple
+Red, green, blue tuple for colour of frame around tile.
+Default: (192, 192, 192) = LIGHT_GREY</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.wall_colour">
+<code class="sig-name descname"><span class="pre">wall_colour</span></code><a class="headerlink" href="#tiles.Tile.wall_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>tuple
+Red, green, blue tuple for colour of walls
+Default: (200, 100, 100) = RED</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tiles.Tile.floor_colour">
+<code class="sig-name descname"><span class="pre">floor_colour</span></code><a class="headerlink" href="#tiles.Tile.floor_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>tuple
+Red, green, blue tuple for colour of floor.
+Default: (150, 150, 255) # BLUE</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="tiles.TileBag">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">tiles.</span></code><code class="sig-name descname"><span class="pre">TileBag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileBag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the bag of tiles from which random ones can be drawn for the Shifting Maze game.</p>
 <dl class="simple">
 <dt>Attributes</dt><dd><dl class="simple">
-<dt>w<span class="classifier">int</span></dt><dd><p>width (x-coordinate)</p>
-</dd>
-<dt>h<span class="classifier">int</span></dt><dd><p>height (y-coordinate)</p>
+<dt>tile_numbers<span class="classifier">list</span></dt><dd><p>List of the tiles in the bag in a random order</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="position.Dimensions.coords">
-<code class="sig-name descname"><span class="pre">coords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Dimensions.coords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return position as a tuple</p>
+<dt id="tiles.TileBag.draw_tile">
+<code class="sig-name descname"><span class="pre">draw_tile</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileBag.draw_tile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a single tile from the bag</p>
 <dl class="simple">
 <dt>Parameters</dt><dd><p>none</p>
 </dd>
-<dt>Keywords</dt><dd><dl class="simple">
-<dt>rev: bool</dt><dd><p>true is dimension order to be reversed, i.e. (h, w) rather then (w, h)</p>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>tile_number<span class="classifier">int</span></dt><dd><p>Number of tile drawn</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tiles.TileBag.draw_tiles">
+<code class="sig-name descname"><span class="pre">draw_tiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileBag.draw_tiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a number tiles from the bag</p>
+<dl class="simple">
+<dt>Parameters</dt><dd><dl class="simple">
+<dt>number<span class="classifier">int</span></dt><dd><p>Number of tiles to be drawn. Default = 1</p>
 </dd>
 </dl>
 </dd>
 <dt>Returns</dt><dd><dl class="simple">
-<dt>coords<span class="classifier">tuple</span></dt><dd><p>dimensions as a tuple</p>
+<dt>tile_list<span class="classifier">list</span></dt><dd><p>List of the tiles</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tiles.TileBag.mix">
+<code class="sig-name descname"><span class="pre">mix</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileBag.mix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mix the content of the bag</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tiles.TileBag.return_tile">
+<code class="sig-name descname"><span class="pre">return_tile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile_number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileBag.return_tile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single tile to the bag and shuffle</p>
+<dl class="simple">
+<dt>Parameters</dt><dd><dl class="simple">
+<dt>tile_number<span class="classifier">int</span></dt><dd><p>Number of tile drawn</p>
 </dd>
 </dl>
 </dd>
@@ -112,97 +231,21 @@
 </dd></dl>
 
 <dl class="py class">
-<dt id="position.Position">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">position.</span></code><code class="sig-name descname"><span class="pre">Position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Position" title="Permalink to this definition">¶</a></dt>
+<dt id="tiles.TileSet">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">tiles.</span></code><code class="sig-name descname"><span class="pre">TileSet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doors_for_tiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tile_counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tiles.TileSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Represents a position as a set of coordinates</p>
+<p>Represents a set of tiles for use in the Shifting Maze game.</p>
 <dl class="simple">
 <dt>Attributes</dt><dd><dl class="simple">
-<dt>x<span class="classifier">int</span></dt><dd><p>x-coordinate</p>
+<dt>name<span class="classifier">string</span></dt><dd><p>Name of tile set. Default: “standard”.</p>
 </dd>
-<dt>y<span class="classifier">int</span></dt><dd><p>y-coordinate</p>
+<dt>tiles<span class="classifier">dict</span></dt><dd><p>Dictionary of tiles indexed by the tile number.</p>
 </dd>
-</dl>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt id="position.Position.DIRECTIONS">
-<code class="sig-name descname"><span class="pre">DIRECTIONS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></em><a class="headerlink" href="#position.Position.DIRECTIONS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="position.Position.DOWN">
-<code class="sig-name descname"><span class="pre">DOWN</span></code><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#position.Position.DOWN" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="position.Position.LEFT">
-<code class="sig-name descname"><span class="pre">LEFT</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#position.Position.LEFT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="position.Position.RIGHT">
-<code class="sig-name descname"><span class="pre">RIGHT</span></code><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#position.Position.RIGHT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="position.Position.UP">
-<code class="sig-name descname"><span class="pre">UP</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#position.Position.UP" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="position.Position.coords">
-<code class="sig-name descname"><span class="pre">coords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Position.coords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return position as a tuple</p>
-<dl class="simple">
-<dt>Parameters</dt><dd><p>none</p>
-</dd>
-<dt>keywords</dt><dd><dl class="simple">
-<dt>rev: bool</dt><dd><p>true is coordinate order to be reversed, i.e. (y, x) rather then (x, y)</p>
-</dd>
-</dl>
-</dd>
-<dt>Returns</dt><dd><dl class="simple">
-<dt>xy<span class="classifier">tuple</span></dt><dd><p>position as a tuple</p>
+<dt>tile_counts<span class="classifier">int</span></dt><dd><p>Number of each tile in set.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="position.Position.get_next">
-<code class="sig-name descname"><span class="pre">get_next</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Position.get_next" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the position of the next point in a particular direction</p>
-<dl class="simple">
-<dt>Parameters</dt><dd><dl class="simple">
-<dt>direction<span class="classifier">int</span></dt><dd><p>Direction in which presence of door to be checked.
-0 = up, 1 = left, 2 = down, 3 = right</p>
-</dd>
-</dl>
-</dd>
-<dt>Returns</dt><dd><dl class="simple">
-<dt>next_position<span class="classifier">Position</span></dt><dd><p>position of next point as a set of coordinates</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="position.Position.move">
-<code class="sig-name descname"><span class="pre">move</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#position.Position.move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the position to the next point in a particular direction</p>
-<dl class="simple">
-<dt>Parameters</dt><dd><dl class="simple">
-<dt>direction<span class="classifier">int</span></dt><dd><p>Direction in which presence of door to be checked.
-0 = up, 1 = left, 2 = down, 3 = right</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>

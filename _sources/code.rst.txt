@@ -1,10 +1,5 @@
 Code
 ====
 
-position
---------
-
-.. automodule:: position
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. include:: code/position.rst
+.. include:: code/tiles.rst
