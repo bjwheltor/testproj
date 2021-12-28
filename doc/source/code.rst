@@ -1,8 +1,8 @@
 Code
 ====
 
-position module
----------------
+position
+--------
 
 .. automodule:: position
    :members:

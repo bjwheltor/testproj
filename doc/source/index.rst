@@ -5,7 +5,7 @@ Documentation
    :maxdepth: 2
 
    intro
-   modules
+   code
 
 * :ref:`genindex`
 * :ref:`modindex`
