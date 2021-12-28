@@ -1,5 +1,8 @@
 Code
 ====
 
-.. include:: code/position.rst
-.. include:: code/tiles.rst
+.. toctree::
+   :maxdepth: 2
+
+   code/position.rst
+   code/tiles.rst
