@@ -106,3 +106,56 @@ class Position:
     def __str__(self):
         """Print coordinates"""
         return f"x = {self.x}, y = {self.y}"
+
+
+class Dimensions:
+    """
+    Represents the dimensions as a set of coordinates
+
+    Attributes
+        w : int
+            width (x-coordinate)
+        h : int
+            height (y-coordinate)
+    """
+
+    def __init__(self, w, h):
+        """
+        Parameters
+            w : int
+                width (x-coordinate)
+            h : int
+                height (y-coordinate)
+        """
+        self.w = w
+        self.h = h
+        self.size = self.w * self.h
+
+    def coords(self, rev=None):
+        """
+        Return position as a tuple
+
+        Parameters
+            none
+
+        Keywords
+            rev: bool
+                true is dimension order to be reversed, i.e. (h, w) rather then (w, h)
+
+        Returns
+            coords : tuple
+                dimensions as a tuple
+        """
+        if rev:
+            coord = (self.h, self.xw)
+        else:
+            coords = (self.w, self.h)
+        return coords
+
+    def __repr__(self):
+        """Display dimemsions"""
+        return f"Dimensions( w = {self.w}, h = {self.h} )"
+
+    def __str__(self):
+        """Print dimemsions"""
+        return f"w = {self.w}, h = {self.h}"
